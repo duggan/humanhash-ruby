@@ -2,35 +2,21 @@
 
 humanhash provides human-readable representations of digests. 
 
-This is a Ruby port of lafncow's [fork](https://github.com/lafncow/humanhash)
-of zacharyvoase's [original version](https://github.com/zacharyvoase/humanhash).Since I use the same compression technique as lafncow this is compatible with
-his code, but not zacharvoase's.
+This is a fork of Jacob Carlson's [port](https://github.com/jacobwcarlson/humanhash-ruby) 
+of a HumanHash implementation. It rearranges the library, adding some tests
+and helper methods to make usage more similar to [Zachary Voase's Python
+implementation](https://github.com/zacharyvoase/humanhash), while retaining extensibility.
 
 ## Examples
 
-    [1] pry(main)> require 'humanhash'
-    [2] pry(main)> digest = '7528880a986c40e78c38115e640da2a1'
-    => "7528880a986c40e78c38115e640da2a1"
-    [3] pry(main)> hasher = HumanHash::HumanHasher.new
-    => #<HumanHash::HumanHasher:0x007fc67467f088
-    [4] pry(main)> hasher.humanize(digest)
-    => "five-magazine-mars-october"
-    [5] pry(main)> hasher.humanize(digest, :words => 6)
-    => "stream-zebra-comet-lemon-snake-october"
-    [6] pry(main)> hasher.humanize(digest, :words => 6, :separator => '|')
-    => "stream|zebra|comet|lemon|snake|october"
-    [7] pry(main)> 10.times.map{hasher.uuid}
-    => ["maryland-minnesota-avocado-yellow",
-    "arizona-seventeen-skylark-december",
-    "south-bulldog-foxtrot-saturn",
-    "alaska-harry-network-beryllium",
-    "south-shade-mars-paris",
-    "maryland-avocado-floor-wyoming",
-    "nine-emma-berlin-venus",
-    "moon-mountain-pluto-fruit",
-    "alaska-crazy-monkey-grey",
-    "rugby-friend-fillet-island"]
-    
+    irb(main):001:0> require 'humanhash'
+    irb(main):002:0> digest = '535061bddb0549f691c8b9c012a55ee2'
+    irb(main):003:0> HumanHash.humanize(digest)
+    => "alpha-twenty-mockingbird-twelve"
+    irb(main):004:0>
+    irb(main):005:0* HumanHash.uuid
+    => ["illinois-michigan-sad-bulldog", "7030c321-c015-4f84-88df-8da92138831b"]
+
 ## Caveats
 
 Don't store the humanhash output, as its statistical uniqueness is only

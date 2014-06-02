@@ -1,5 +1,3 @@
-require 'securerandom'
-
 module HumanHash
   DEFAULT_WORDLIST = [
     'ack', 'alabama', 'alanine', 'alaska', 'alpha', 'angel', 'apart', 'april',
@@ -39,33 +37,4 @@ module HumanHash
     'wisconsin', 'wolfram', 'wyoming', 'xray', 'yankee', 'yellow', 'zebra',
     'zulu'
   ]
-
-  class HumanHasher
-    def initialize(wordlist = DEFAULT_WORDLIST)
-      raise "Wordlist must have exactly 256 items" unless wordlist.size == 256
-      @wordlist = wordlist
-
-      nil
-    end
-
-    def humanize(hexdigest, opts={})
-      words = opts[:words] || 4
-      separator = opts[:separator] || '-'
-
-      bytes = [hexdigest].pack("H*").bytes.to_a
-      compress(bytes, words).map{|x| @wordlist[x]}.join(separator)
-    end
-
-    def compress(bytes, target)
-      len = bytes.size
-      return bytes unless target < len
-
-      segment_size = (len / target) + 1;
-      bytes.each_slice(segment_size).map{|x| x.reduce{|s,b| s ^ b}}
-    end
-
-    def uuid(opts={})
-      humanize(SecureRandom.uuid.gsub('-', ''), opts)
-    end
-  end
 end

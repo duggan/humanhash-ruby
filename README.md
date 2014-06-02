@@ -1,5 +1,7 @@
 #humanhash-ruby
 
+[![Build Status](https://travis-ci.org/duggan/humanhash-ruby.png?branch=master)](https://travis-ci.org/duggan/humanhash-ruby)
+
 humanhash provides human-readable representations of digests. 
 
 This is a fork of Jacob Carlson's [port](https://github.com/jacobwcarlson/humanhash-ruby) 

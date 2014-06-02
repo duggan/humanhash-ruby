@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+- 2.1.1
+- 1.9.3
+before_install:
+- gem install bundler -v 1.6.2
+script: bundle exec rspec
+notifications:
+  email:
+    on_success: never
+    on_failure: change
